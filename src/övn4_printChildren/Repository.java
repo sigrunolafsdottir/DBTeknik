@@ -20,7 +20,7 @@ public class Repository {
     
     public Repository(){
         try{
-            p.load(new FileInputStream("src/övn4_objectModel/Settings.properties"));
+            p.load(new FileInputStream("src/övn4_printChildren/Settings.properties"));
             Class.forName("com.mysql.jdbc.Driver");
         }
          catch (Exception e){
@@ -28,27 +28,7 @@ public class Repository {
         }
     }
 
-//    public List<Present> getAllPresents(){
-//        List<Present> presents = new ArrayList<>();    
-//        ResultSet rs = null;
-//        String query = "select present.id, present.name from present";
-//        
-//        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
-//                             p.getProperty("name"),
-//                             p.getProperty("password"));
-//             PreparedStatement stmt = con.prepareStatement(query)){
-//            
-//            rs = stmt.executeQuery();
-//            
-//            while (rs.next()) {
-//                presents.add(new Present(rs.getInt("id"),rs.getString("name")));
-//            }
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return presents;
-//    }
+
     
     public List<Present> getWishlistForChildByChildId(int childId){
         
@@ -84,9 +64,7 @@ public class Repository {
         List<Present> presents = new ArrayList<>();    
         ResultSet rs = null;
         String query = "select present.id, present.name from present inner join gets on gets.presentId = present.id inner join child on gets.childId = child.id where child.id = ?";
-        
-        //String query = "select present.id, present.name from present inner join ? on ?.presentId = present.id inner join child on ?.childId = child.id where child.id = ?";
-        
+                
         try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
                              p.getProperty("name"),
                              p.getProperty("password"));
@@ -106,74 +84,7 @@ public class Repository {
     }
     
     
-//    public Present getPresentById(int id){
-//        Present present = new Present();    
-//        ResultSet rs = null;
-//        String query = "select present.id, present.name from present where id = ?";
-//        
-//        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
-//                             p.getProperty("name"),
-//                             p.getProperty("password"));
-//            PreparedStatement stmt = con.prepareStatement(query)){
-//            
-//            stmt.setString(1, id+"");
-//            rs = stmt.executeQuery();
-//            
-//            while (rs.next()) {
-//                present = new Present(rs.getInt("id"),rs.getString("name"));
-//            }
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return present;
-//    }
-    
-//    public List<Country> getAllCountries(){
-//        List<Country> countries = new ArrayList<>();    
-//        ResultSet rs = null;
-//        String query = "select country.id, country.name from country";
-//        
-//        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
-//                             p.getProperty("name"),
-//                             p.getProperty("password"));
-//             PreparedStatement stmt = con.prepareStatement(query)){
-//            
-//            rs = stmt.executeQuery();
-//            
-//            while (rs.next()) {
-//                countries.add(new Country(rs.getInt("id"),rs.getString("name")));
-//            }
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return countries;
-//    }
-    
-    
-//    public Country getCountryById(int id){
-//        Country country = new Country();    
-//        ResultSet rs = null;
-//        String query = "select country.id, country.name from present where id = ?";
-//        
-//        try (Connection con = DriverManager.getConnection(p.getProperty("connectionString"),
-//                             p.getProperty("name"),
-//                             p.getProperty("password"));
-//             PreparedStatement stmt = con.prepareStatement(query)){
-//            
-//            stmt.setString(1, id+"");
-//            rs = stmt.executeQuery();
-//            
-//            while (rs.next()) {
-//                country = new Country(rs.getInt("id"),rs.getString("name"));
-//            }
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return country;
-//    }
+
     
         public Country getCountryByChildId(int childId){
         Country country = new Country();    
