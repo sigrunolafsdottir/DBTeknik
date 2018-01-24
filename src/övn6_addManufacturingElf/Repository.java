@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
 
@@ -41,6 +42,9 @@ public class Repository {
             if (!errormessage.equals("")) {
                 return errormessage;
             }
+        }
+        catch (SQLException e){
+            return e.getMessage() +"("+e.getErrorCode()+")";
         }
         catch (Exception e){
             e.printStackTrace();
